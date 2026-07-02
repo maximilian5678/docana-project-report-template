@@ -1,6 +1,7 @@
-title: Document Analysis Semester Project
-description: This repository is a GitHub Pages template for Document Analysis course projects. 
-show_downloads: True
+title: Reddit Communities – Vocabulary & Style
+description: How topical Reddit communities differ in vocabulary, sentiment, subjectivity and length — and which are linguistically closest despite being thematically distant.
+show_downloads: false
+theme: jekyll-theme-cayman
 plugins:
   - jekyll-relative-links
 relative_links:
@@ -9,5 +10,3 @@ relative_links:
 include:
   - README.md
   - REPORT.md
-
-theme: jekyll-theme-minimal
