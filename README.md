@@ -24,8 +24,9 @@ Follow this steps to set up your project report:
 ***
 
 # Project Title
+How do topical Reddit communities differ in their distinctive vocabulary and linguistic style (sentiment, subjectivity, length), and which communities turn out to be linguistically closest despite being thematically distant?
 
-_Group members: Name 1, Name 2, Name 3_
+_Group members: Carmely Reiska, Maximilian Jaeger
 
 ## Introduction
 
