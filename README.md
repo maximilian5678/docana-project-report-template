@@ -24,11 +24,12 @@ All experiments were conducted using Python 3.14.4 and open-source libraries. Th
 To set up the environment and install all dependencies, run the following commands:
 
 ```bash
-git clone [https://github.com/maximilian5678/docana-project-report-template.git](https://github.com/maximilian5678/docana-project-report-template.git)
+git clone https://github.com/maximilian5678/docana-project-report-template.git
 cd docana-project-report-template
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r code/src/requirements.txt
+```
 
 It is then run with a single command:
 
