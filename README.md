@@ -1,4 +1,3 @@
-
 # Linguistic Fingerprints of Reddit Communities
 
 _Group members: Carmely Reiska, Maximilian Jaeger_
