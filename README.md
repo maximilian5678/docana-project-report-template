@@ -1,6 +1,6 @@
 # Linguistic Fingerprints of Reddit Communities
 
-_Group members: Carmely Reiska, Maximilian Jaeger_
+_By Carmely Reiska, Maximilian Jaeger_
 
 ## Introduction
 
@@ -11,7 +11,9 @@ This project explores this phenomenon by quantifying the linguistic differences 
 
 ## Dataset
 
-Provide a short description of the dataset used in your project. Focus on highlighting the aspects that are particularly relevant to your work.
+The foundation of this project is the Webis-TLDR-17 corpus [3], a large collection of roughly 3.8 million Reddit posts written between 2006 and 2016, originally compiled for research on abstractive summarization. Each post consists of a main text and a short author written "TL;DR", and is labelled with its subreddit, which provides a reliable ground truth for the community a text belongs to. Since the posts were authored by humans and filtered for bot generated content, the material reflects genuine user writing.
+
+For our analysis we concentrate on the content field, which captures the writing style of each author, while the summaries lie outside the scope of our research question. As the full corpus is too large to process entirely, we compiled a balanced subset of nine subreddits representing four thematic clusters, namely gaming, advice and self improvement, debate and opinion, and a general purpose community as a neutral reference point. Sampling up to 2500 posts per subreddit yields roughly 22500 evenly distributed documents. One property to keep in mind is that the corpus only contains posts with a TL;DR, which favours longer submissions and slightly biases post length.
 
 ## Methods
 
@@ -47,8 +49,8 @@ Summarize the major outcomes of your project, reflect on the research findings, 
 
 | Team Member  | Contributions                                             |
 |--------------|-----------------------------------------------------------|
-| Carmely Reiska  | |  ...                                                     |
-| Maximilian Jaeger  | ...                                                       |
+| Carmely Reiska  | report                                                     |
+| Maximilian Jaeger  | report, tf-idf similiarity                                                       |
 
 ## References
 
