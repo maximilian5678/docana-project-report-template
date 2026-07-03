@@ -46,7 +46,15 @@ Report how you conducted the experiments. We suggest including detailed explanat
 
 ## Results and Discussion
 
-Present the findings from your experiments, supported by visual or statistical evidence. Discuss how these results address your main research question.
+To identify the linguistic connections between different subreddits, we calculated the cosine similarity of their text data using a TF-IDF vectorizer. The results are visualized in the similarity matrix below:
+
+![Linguistic similarity between communities](figures/similarity_heatmap.png)
+
+### Key Findings
+
+The matrix reveals that language patterns extend far beyond just the topic of discussion. As expected, gaming related subreddits show a tight linguistic connection. **Diablo**, **leagueoflegends**, and **Games** all share high similarity scores ranging from 0.62 to 0.69, which is likely because they all share a common gaming vocabulary. The highest similarity in the entire dataset between two different categories is between **relationship_advice** and **AskReddit** at **0.79**. While **relationship_advice** is for specific personal topics and **AskReddit** is for general public questions, they write in a similar conversational way by focusing heavily on personal storytelling and asking questions. We found a strong linguistic overlap between **politics** and **atheism** (**0.70**), as well as **politics** and **personalfinance** (**0.68**). These communities deal with very different subject matters, but they also share an analytical, highly opinionated, and structural way of writing. The lowest similarity score belongs to **leagueoflegends** and **personalfinance** (**0.40**). This shows a clear line between casual video game style discussion and the professional formal way people discuss wealth and personal finance.
+
+These results illustrate our main research question: subreddits do indeed have distinct "linguistic fingerprints." Additionally, it is clear that sometimes communities talk about entirely unrelated aspects of life by sharing a surprisingly similar way of speaking.
 
 ## Conclusion
 
