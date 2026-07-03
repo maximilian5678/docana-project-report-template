@@ -47,15 +47,34 @@ Report how you conducted the experiments. We suggest including detailed explanat
 
 ## Results and Discussion
 
-To identify the linguistic connections between different subreddits, we calculated the cosine similarity of their text data using a TF-IDF vectorizer. The results are visualized in the similarity matrix below:
+To identify the linguistic connections between different subreddits, we evaluated the communities through two distinct lenses: word-level style patterns using a TF-IDF vectorizer, and deeper conceptual meaning using a Sentence Transformer model (**all-MiniLM-L6-v2**).
+
+### Findings with TF-IDF
+
+First, we calculated the cosine similarity of the subreddits' text data based on their exact word usage. The results are visualized in the similarity matrix below:
 
 ![Linguistic similarity between communities](figures/similarity_heatmap.png)
 
-### Key Findings
+The TF-IDF matrix shows that language patterns extend far beyond just the general topic of discussion. As expected, gaming-related subreddits present a tight linguistic connection. **Diablo**, **leagueoflegends**, and **Games** all share high similarity scores ranging from 0.62 to 0.69, which is likely because they all share a common gaming vocabulary. 
 
-The matrix reveals that language patterns extend far beyond just the topic of discussion. As expected, gaming related subreddits show a tight linguistic connection. **Diablo**, **leagueoflegends**, and **Games** all share high similarity scores ranging from 0.62 to 0.69, which is likely because they all share a common gaming vocabulary. The highest similarity in the entire dataset between two different categories is between **relationship_advice** and **AskReddit** at **0.79**. While **relationship_advice** is for specific personal topics and **AskReddit** is for general public questions, they write in a similar conversational way by focusing heavily on personal storytelling and asking questions. We found a strong linguistic overlap between **politics** and **atheism** (**0.70**), as well as **politics** and **personalfinance** (**0.68**). These communities deal with very different subject matters, but they also share an analytical, highly opinionated, and structural way of writing. The lowest similarity score belongs to **leagueoflegends** and **personalfinance** (**0.40**). This shows a clear line between casual video game style discussion and the professional formal way people discuss wealth and personal finance.
+The highest similarity in the entire dataset between two different categories is between **relationship_advice** and **AskReddit** at **0.79**. While **relationship_advice** is for specific personal topics and **AskReddit** is for general public questions, they write in a similar way by focusing heavily on personal storytelling and asking questions. 
 
-These results illustrate our main research question: subreddits do indeed have distinct "linguistic fingerprints." Additionally, it is clear that sometimes communities talk about entirely unrelated aspects of life by sharing a surprisingly similar way of speaking.
+We also found a strong linguistic overlap between **politics** and **atheism** (**0.70**), as well as **politics** and **personalfinance** (**0.68**). These communities deal with very different subject matters, but they share an analytical, highly opinionated, and structural way of writing. The lowest similarity score belongs to **leagueoflegends** and **personalfinance** (**0.40**), which demonstrates a clear distinction between casual video game style discussion and the professional way people discuss wealth.
+
+### SBERT
+
+To test if these patterns hold up when looking at meaning rather than just surface-level words, we used sentence embeddings to map out each subreddit. The semantic similarities are visualized below:
+
+![Semantic similarity between communities](figures/bert_similarity_heatmap.png)
+
+By switching from word matching to analyzing underlying meaning, we uncover several new details for our data story. Firstly, the biggest change is how drastically the similarity scores dropped across completely unrelated categories. For example, the similarity between **Diablo** and **relationship_advice** reduced from 0.48 down to 0.16. This big drop actually proves our hypothesis. It shows that their earlier similarity was just because they share a casual writing style, not because they are talking about the same things.
+
+Within the gaming category, the connection remains very strong. **Diablo** and **leagueoflegends** share a semantic similarity of **0.75** (up from 0.62 in TF-IDF). This tells us that these communities don't just use similar casual slang. They are actively discussing gaming in highly related and beyond general level of core concepts. Similarly, **relationship_advice** and **AskReddit** still maintain a high similarity of **0.62**. While lower than their style-driven TF-IDF score, this confirms that the underlying themes of these subreddits including discussion about humans, relationships, advice-seeking, and life experiences share a deep semantic foundation. Serious discussion forums like **politics** and **atheism** dropped to **0.47**. This indicates that while they share an analytical tone in TF-IDF, they are fundamentally talking about entirely distinct topics.
+
+### Summary of Findings
+
+Comparing both heatmaps provides a clear answer to our research question. Subreddits absolutely possess distinct "linguistic fingerprints." TF-IDF highlights how communities with completely unrelated topics can share an almost identical conversational style, while SBERT allows us to strip away that stylistic mask to see just how distinct their actual topics truly are.
+
 
 ## Conclusion
 
