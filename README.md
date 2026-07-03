@@ -1,11 +1,14 @@
 
-# The Lexical Lore of Fandoms: Thematic Fingerprints and Engagement Dynamics Across Genre Subcultures
+# Linguistic Fingerprints of Reddit Communities
 
 _Group members: Carmely Reiska, Maximilian Jaeger_
 
 ## Introduction
 
-Start off by setting the stage for your project. Give a brief overview of relevant studies or work that have tackled similar issues. Then, clearly describe the main question or problem your project is designed to solve.
+Online communication platforms such as Reddit offer a wide field of distinct communities that are centered around specific questions, interests, beliefs, or hobbies [1]. However, what sets these subreddits apart often goes far beyond their core themes, extending into highly distinctive writing and linguistic styles. Studying these unique writing styles via stylometry allows researchers to analyze and identify the underlying structural patterns that characterize a certain text [2]. Previous research in natural language processing has shown that stylistic features are a stronger indicator of a community than the actual content that is being discussed [1]. Furthermore, as users actively engage with these forums, their writing and linguistic styles tend to align with the dominant style of their chosen community. 
+
+This project explores this phenomenon by quantifying the linguistic differences and common language patterns among various subreddits. By applying computational text analysis and natural language processing, we aim to map the unique stylometric features of these communities. Ultimately, we want to highlight the unique text patterns of different subreddits and find out if communities with completely unrelated topics happen to share a similar way of writing.
+
 
 ## Dataset
 
@@ -50,8 +53,8 @@ Summarize the major outcomes of your project, reflect on the research findings, 
 
 ## References
 
-[1]
+[1] [Characterizing the Language of Online Communities and its Relation to Community Reception](https://aclanthology.org/D16-1108/) (Tran & Ostendorf, EMNLP 2016)
 
-[2]
+[2] [Using Authorship Verification to Mitigate Abuse in Online Communities](https://doi.org/10.1609/icwsm.v16i1.19359) (Weerasinghe et al., ICWSM 2022)
 
-[3]
+[3] https://huggingface.co/datasets/webis/tldr-17 
