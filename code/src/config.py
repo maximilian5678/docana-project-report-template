@@ -16,7 +16,7 @@ N_PER_SUB = 2500
 # Paths
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR.parent / "data"
-FIG_DIR  = BASE_DIR.parent / "figures"
+FIG_DIR  = BASE_DIR.parent.parent / "figures"
 DATA_DIR.mkdir(exist_ok=True)
 FIG_DIR.mkdir(exist_ok=True)
 CACHE = DATA_DIR / "subset.parquet"
