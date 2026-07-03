@@ -11,7 +11,7 @@ This project explores this phenomenon by quantifying the linguistic differences 
 
 ## Dataset
 
-The foundation of this project is the Webis-TLDR-17 corpus [3], a large collection of roughly 3.8 million Reddit posts written between 2006 and 2016, originally compiled for research on abstractive summarization. Each post consists of a main text and a short author written "TL;DR", and is labelled with its subreddit, which provides a reliable ground truth for the community a text belongs to. Since the posts were authored by humans and filtered for bot generated content, the material reflects genuine user writing.
+The foundation of this project is the Webis-TLDR-17 corpus [3], which is a large collection of roughly 3.8 million Reddit posts written between 2006 and 2016. It was originally compiled for research on abstractive summarization, where each post consists of a main text and a short author written "TL;DR". It is labelled with its subreddit, which provides a reliable ground truth for the community a certain text belongs to. Since the posts were authored by humans and filtered for bot generated content, the material reflects genuine user writing.
 
 For our analysis we concentrate on the content field, which captures the writing style of each author, while the summaries lie outside the scope of our research question. As the full corpus is too large to process entirely, we compiled a balanced subset of nine subreddits representing four thematic clusters, namely gaming, advice and self improvement, debate and opinion, and a general purpose community as a neutral reference point. Sampling up to 2500 posts per subreddit yields roughly 22500 evenly distributed documents. One property to keep in mind is that the corpus only contains posts with a TL;DR, which favours longer submissions and slightly biases post length.
 
@@ -19,19 +19,25 @@ For our analysis we concentrate on the content field, which captures the writing
 
 ### Setup 
 
+All experiments were conducted using Python 3.14.4 and open-source libraries. The analysis is entirely CPU-based and runs on a standard laptop. The main dependencies are pinned in `requirements.txt`.
 
-Outline the tools, software, and hardware environment, along with configurations used for conducting your experiments. Be sure to document the Python version and other dependencies clearly. Provide step-by-step instructions on how to recreate your environment, ensuring anyone can replicate your setup with ease:
-
-```bash
-conda create --name myenv python=<version>
-conda activate myenv
-```
-
-Include a `requirements.txt` file in your project repository. This file should list all the Python libraries and their versions needed to run the project. Provide instructions on how to install these dependencies using pip, for example:
+To set up the environment and install all dependencies, run the following commands:
 
 ```bash
-pip install -r requirements.txt
+git clone [https://github.com/maximilian5678/docana-project-report-template.git](https://github.com/maximilian5678/docana-project-report-template.git)
+cd docana-project-report-template
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r code/src/requirements.txt
+
+It is then run with a single command:
+
+```bash
+cd code/src
+python run.py
 ```
+
+On the first run, the corpus is streamed and cached locally as `data/subset.parquet`. Subsequent runs will load the cached data instantly and save all generated figures to the `figures/` directory.
 
 ### Experiments
 
