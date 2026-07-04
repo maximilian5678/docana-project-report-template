@@ -79,6 +79,10 @@ Within the gaming category, the connection remains very strong. **Diablo** and *
 
 Comparing both heatmaps provides a clear answer to our research question. Subreddits absolutely possess distinct "linguistic fingerprints." TF-IDF highlights how communities with completely unrelated topics can share an almost identical conversational style, while SBERT allows us to strip away that stylistic mask to see just how distinct their actual topics truly are.
 
+### How Separable Are the Communities?
+
+![Semantic similarity between communities](figures/confusion_matrix.png)
+
 
 ## Conclusion
 
