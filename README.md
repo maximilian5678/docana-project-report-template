@@ -120,7 +120,7 @@ The mistakes line up almost exactly with the overlaps from the heatmaps. **AskRe
 
 ## Conclusion
 
-Summarize the major outcomes of your project, reflect on the research findings, and clearly state the conclusions you've drawn from the study.
+This project set out to measure how topical Reddit communities differ in their vocabulary and writing style, and which are linguistically closest despite being thematically distant. Across TF-IDF, SBERT, and a supervised classifier the answer is consistent. Subreddits carry distinctive linguistic fingerprints, and the overlaps that appear are driven by shared writing style rather than shared topics. TF-IDF shows that thematically unrelated communities can still write almost the same way. The clearest examples are **relationship_advice** and **AskReddit** (**0.79**) with their shared story-telling register and **politics** and **atheism** (**0.70**) with their common argumentative tone, which answers the second part of our research question. The SBERT view then shifts the focus from style to meaning. Similarity between unrelated communities drops sharply while genuinely related ones such as the gaming subreddits stay close. The classifier confirms that the communities are easy to tell apart, making mistakes only where the two heatmaps already showed overlap. Overall, these results confirm that Reddit communities have measurable linguistic fingerprints. Unrelated communities appear alike because of how they write, not what they write about.
 
 ## Contributions
 
