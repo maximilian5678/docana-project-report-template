@@ -111,11 +111,11 @@ Comparing both heatmaps provides a clear answer to our research question. Subred
 
 The two heatmaps show how communities relate, but not whether the differences are large enough to tell posts apart. To test this, we trained the Naive Bayes classifier described above and examined its row-normalised confusion matrix.
 
-![Semantic similarity between communities](figures/confusion_matrix.png)
+![Confusion matrix showing community separability](figures/confusion_matrix.png)
 
-The strong diagonal confirms that the communities are highly separable. The classifier assigns roughly 79% of posts to the correct subreddit, far above the 11% expected from random guessing across nine balanced classes. The most specialised communities are the easiest to identify: personalfinance (0.89), relationship_advice (0.86), and Fitness (0.84), matching their highly specific vocabulary. The three gaming subreddits are equally distinct, each between 0.81 and 0.83.
+The strong diagonal confirms that the communities are highly separable. The classifier assigns roughly **79%** of posts to the correct subreddit, far above the 11% expected from random guessing across nine balanced classes. The most specialised communities are the easiest to identify: **personalfinance** (**0.89**), **relationship_advice** (**0.86**), and **Fitness** (**0.84**), matching their highly specific vocabulary. The three gaming subreddits are equally distinct, each between **0.81** and **0.83**.
 
-The mistakes line up almost exactly with the overlaps from the heatmaps. AskReddit is the hardest to pin down (0.63), leaking mostly into relationship_advice (0.14), the supervised echo of their 0.79 TF-IDF similarity. politics is the second hardest (0.69) and is most often confused with personalfinance (0.11) and atheism (0.10), the same argumentative cluster from the TF-IDF view. Crucially, almost none of these confusions cross cluster boundaries. The classifier fails exactly where our similarity analysis predicted, confirming that subreddits carry distinctive fingerprints and that the few overlaps reflect a genuinely shared writing style rather than random error.
+The mistakes line up almost exactly with the overlaps from the heatmaps. **AskReddit** is the hardest to pin down (**0.63**), leaking mostly into **relationship_advice** (**0.14**), the supervised echo of their **0.79** TF-IDF similarity. **politics** is the second hardest (**0.69**) and is most often confused with **personalfinance** (**0.11**) and **atheism** (**0.10**), the same argumentative cluster from the TF-IDF view. Crucially, almost none of these confusions cross cluster boundaries. The classifier fails exactly where our similarity analysis predicted, confirming that subreddits carry distinctive fingerprints and that the few overlaps reflect a genuinely shared writing style rather than random error.
 
 
 ## Conclusion
