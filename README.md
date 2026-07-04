@@ -75,7 +75,7 @@ As a final experiment, we test whether the communities are separable in a superv
 
 ## Results and Discussion
 
-To identify the linguistic connections between different subreddits, we evaluated the communities through two distinct lenses: word-level style patterns using a TF-IDF vectorizer, and deeper conceptual meaning using a Sentence Transformer model (**all-MiniLM-L6-v2**).
+To identify the linguistic connections between different subreddits, we evaluated the communities through two distinct lenses: word-level style patterns using a TF-IDF vectorizer, and deeper conceptual meaning using a Sentence Transformer model (`all-MiniLM-L6-v2`).
 
 ### Findings with TF-IDF
 
