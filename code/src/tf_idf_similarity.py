@@ -18,7 +18,7 @@ def compute_profiles(df):
 def plot_heatmap(profiles, save=True):
     """Plot cosine similarity heatmap of the per-community tf-idf profiles."""
     sim = cosine_similarity(profiles)
-    plt.figure(figsize=(8, 6.5))
+    plt.figure(figsize=(8.5, 6.5))
     sns.heatmap(sim, annot=True, fmt=".2f", cmap="Purples", xticklabels=TARGET_SUBS, yticklabels=TARGET_SUBS, square=True, cbar_kws={"label": "cosine similarity", "shrink": .8})
     plt.title("Linguistic similarity between communities (tf-idf + cosine)", pad=14)
     plt.xticks(rotation=40, ha="right")

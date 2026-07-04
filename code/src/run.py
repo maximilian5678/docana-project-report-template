@@ -19,8 +19,8 @@ def main():
     plot_distinctive_terms(terms, profiles)
 
     # BERT-based similarity
-    _, profiles_bert = compute_bert_profiles(df)
-    plot_bert_heatmap(profiles_bert)
+    #_, profiles_bert = compute_bert_profiles(df)
+    #plot_bert_heatmap(profiles_bert)
 
     # Naive Bayes classifier
     run_classifier(df)
