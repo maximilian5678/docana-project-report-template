@@ -43,7 +43,7 @@ On the first run, the corpus is streamed and cached locally as `data/subset.parq
 
 ### Experiments
 
-The experimental pipeline is fully deterministic and proceeds in four stages: assembling a balanced corpus, cleaning and normalising the text, deriving stylistic and semantic community profiles, and finally testing how separable the communities are with a supervised classifier. All stages are orchestrated from `run.py`, and every intermediate figure is written to the `figures/ directory`.
+The experimental pipeline is reproducible and proceeds in four stages: assembling a balanced corpus, cleaning and normalising the text, deriving stylistic and semantic community profiles, and finally testing how separable the communities are with a supervised classifier. All stages are orchestrated from `run.py`, and every intermediate figure is written to the `figures/ directory`.
 
 #### Corpus construction and sampling
 
