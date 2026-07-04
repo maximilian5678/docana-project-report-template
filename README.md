@@ -43,7 +43,35 @@ On the first run, the corpus is streamed and cached locally as `data/subset.parq
 
 ### Experiments
 
-Report how you conducted the experiments. We suggest including detailed explanations of the preprocessing steps and model training in your project. For the preprocessing, describe  data cleaning, normalization, or transformation steps you applied to prepare the dataset, along with the reasons for choosing these methods. In the section on model training, explain the methodologies and algorithms you used, detail the parameter settings and training protocols, and describe any measures taken to ensure the validity of the models.
+The experimental pipeline is fully deterministic and proceeds in four stages: assembling a balanced corpus, cleaning and normalising the text, deriving stylistic and semantic community profiles, and finally testing how separable the communities are with a supervised classifier. All stages are orchestrated from `run.py`, and every intermediate figure is written to the `figures/ directory`.
+
+#### Corpus construction and sampling
+
+Because the full Webis-TLDR-17 corpus is too large to hold in memory, it is consumed as a stream through the HuggingFace Parquet export rather than downloaded in full. As posts arrive, each one is matched against our nine target subreddits, and posts are collected into per-community buckets until every bucket holds up to 2500 documents. To avoid contaminating the profiles with empty or near-empty submissions, any post shorter than ten whitespace tokens is discarded during sampling. The ceiling of 2500 posts per subreddit was chosen to keep the corpus balanced. Since the Diablo subreddit is the rarest of the nine communities with roughly 2677 usable posts, a higher target would have forced an uneven distribution. This yields a balanced corpus of roughly 22,500 documents in which no single community dominates the vocabulary statistics. The resulting subset is cached locally as `data/subset.parquet`, so the expensive streaming step runs only once.
+
+#### Preprocessing
+
+For the word-level analysis, each post passes through a lightweight normalisation step. The text is lowercased, and apostrophes are removed before any other punctuation is stripped, so that contractions such as "don't" collapse into a single token "dont" rather than being split into two fragments. All remaining non-alphabetic characters are then replaced by spaces, and repeated whitespace is collapsed. This keeps the feature space restricted to alphabetic word forms and prevents digits, markup, and punctuation from introducing spurious tokens.
+
+Stopword handling is deliberately more aggressive than the default English list. In addition to the standard scikit-learn stopwords, we remove a set of high-frequency conversational fillers (for example "people", "think", "know", "really", "would", "like", "get", together with common contraction forms such as "im", "dont", "ive", "youre", "thats"). These words appear at similar rates in almost every community and would otherwise dominate the distinctive-term rankings without carrying any discriminative signal, obscuring the vocabulary that actually distinguishes one subreddit from another.
+
+Importantly, this cleaning is applied only to the TF-IDF branch of the analysis. The Sentence Transformer operates on the raw, unmodified post text, since transformer models rely on natural casing, punctuation, and sentence structure to build meaningful contextual representations.
+
+#### Stylistic profiles with TF-IDF
+
+To capture surface-level writing style, all cleaned posts are transformed with a single TF-IDF vectoriser fitted across the entire corpus. The vectoriser uses sublinear term-frequency scaling to dampen the influence of very frequent words, ignores any term that occurs in fewer than twenty documents (`min_df=20`) to suppress rare and noisy tokens, and caps the vocabulary at 20,000 features. Each post becomes a sparse TF-IDF vector, and a single profile vector per community is obtained by averaging the vectors of all its posts. Pairwise cosine similarity between these nine profiles produces the linguistic similarity matrix, in which a high value indicates that two communities draw on a similar distribution of words.
+
+#### Distinctive terms
+
+The same averaged TF-IDF profiles are reused to expose the vocabulary behind each similarity score. For every community, the twelve terms with the highest mean TF-IDF weight are extracted and displayed as per-community bar charts. Because the weight already accounts for how characteristic a term is relative to the rest of the corpus, these rankings act as an interpretable "fingerprint" of each subreddit and make it possible to read off why two communities end up close together or far apart.
+
+#### Semantic profiles with SBERT
+
+The TF-IDF view rewards shared word forms but is blind to meaning, which means two communities discussing the same concepts with different vocabulary appear dissimilar. To complement it, we embed each raw post with the pre-trained Sentence Transformer `all-MiniLM-L6-v2`, which maps a full post into a dense 384-dimensional vector that encodes its contextual meaning. Embeddings are L2-normalised at encoding time and averaged into one profile vector per community. By calculating the cosine similarity between these semantic embeddings, we create the second heatmap. Comparing it against the TF-IDF matrix is the central experiment of the project. If two communities look similar in TF-IDF but not in the semantic view, their similarity comes from a shared writing style, not from a shared topic.
+
+#### Community separability
+
+As a final experiment, we test whether the communities are separable in a supervised setting. The corpus is split into 75% training and 25% test data using a stratified split with a fixed random seed, so that the class balance is preserved and the result is reproducible. A dedicated TF-IDF vectoriser is fitted on the training texts alone, this time including bigrams (`ngram_range=(1, 2)`), a minimum document frequency of twenty, and a vocabulary limit of 30,000 features, in order to capture short characteristic phrases in addition to single words. A Multinomial Naive Bayes classifier is trained on these features and evaluated on the held-out test set. Beyond overall accuracy and a per-class classification report, we report a row-normalised confusion matrix, which shows the share of each true community's posts assigned to every predicted community. The off-diagonal cells reveal exactly which communities the model confuses, providing a supervised cross-check on the similarity patterns observed in the two heatmaps.
 
 ## Results and Discussion
 
